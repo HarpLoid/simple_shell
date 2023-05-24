@@ -27,6 +27,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 			return(1);
 		}
 
+		free_tokens(tokens);
 	}
 	
 

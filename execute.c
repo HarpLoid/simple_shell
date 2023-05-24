@@ -1,7 +1,11 @@
 #include "shell.h"
 
 /**
+ * execute - executes the commands in buffer
+ * @buffer: buffer containing commands
+ * @environ: enviroment
  *
+ * Return: 0 on success, 1 on error
  */
 int execute(char **buffer, char **environ)
 {

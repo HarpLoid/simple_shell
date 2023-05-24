@@ -22,7 +22,7 @@ char **tokenize(char *buffer, const char *delim);
 int isdelim(char c, const char *delim);
 int prompt(char **line, size_t *n);
 int execute(char **buffer, char **environ);
-
+void free_tokens(char **tokens);
 
 
 
