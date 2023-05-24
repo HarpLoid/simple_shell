@@ -7,13 +7,16 @@
  *
  * Return: void
  */
-void free_tokens(char **tokens)
+void free_tokens(char **buffer)
 {
 	int i;
 
-	for (i = 0; tokens[i]; i++)
+	print("here");
+
+	for (i = 0; buffer[i]; i++)
 	{
-		free(tokens[i]);
+		free(buffer[i]);
+		print("freed");
 	}
-	free(tokens);
+	free(buffer);
 }

@@ -22,7 +22,6 @@ int execute(char **buffer, char **environ)
 	{
 		if (execve(buffer[0], buffer, environ) == -1)
 		{
-			perror("Error with executing");
 			return (1);
 		}
 		return (0);

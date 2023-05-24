@@ -19,7 +19,7 @@ char **tokenize(char *buffer, const char *delim)
 {
 	char **result = NULL;
 	int result_size = 0, buffer_size = _strlen(buffer), len = 0, start = 0, end = 0;
-	
+
 	while (end < buffer_size && buffer[end] != '\0')
 	{
 		if (isdelim(buffer[end], delim) || end == buffer_size - 1)
@@ -31,7 +31,7 @@ char **tokenize(char *buffer, const char *delim)
 
 			if (len > 0)
 			{
-				result = _realloc(result, result_size, (result_size + 1) * sizeof(char*));
+				result = realloc(result, (result_size + 1) * sizeof(char*));
 				if (result == NULL)
 				{
 					free(result);

@@ -24,8 +24,10 @@ int prompt(char **line, size_t *n);
 int execute(char **buffer, char **environ);
 void free_tokens(char **tokens);
 
-
-
+/*Debug Functions*/
+void print_array(char **array);
+void print(char *str);
+/*Debug Functions*/
 
 
 #endif /*_SHELL_H_*/

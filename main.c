@@ -9,7 +9,7 @@
  * Return: Always 0
  */
 int main(__attribute__((unused)) int ac, char *av[])
-{
+{	
 	char *line = NULL;
 	size_t n = 0;
 	char **tokens;
@@ -18,10 +18,10 @@ int main(__attribute__((unused)) int ac, char *av[])
 	{	
 		if (prompt(&line, &n) == 1)
 			return (1);
-
+		
 		tokens = tokenize(line, " ,.\t");
 
-		if (execute(tokens, environ) == -1)
+		if (execute(tokens, environ) == 1)
 		{
 			perror(av[0]);
 			return(1);
