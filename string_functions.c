@@ -67,7 +67,7 @@ char *_strncpy(char *dest, char *src, int n)
  *
  * Return: value of length of string.
  */
-int _strlen(char *s)
+int _strlen(const char *s)
 {
 	int count = 0;
 
@@ -101,5 +101,32 @@ int _strcmp(char *s1, char *s2)
 		}
 
 	}
+	return (s1[i] - s2[i]);
+}
+
+/**
+ * _strncmp - compares two strings
+ * and checks if they are equal to n bytes.
+ * @s1: first string to compare.
+ * @s2: string to compare.
+ * @n: number of bytes to compare
+ *
+ * Return: 0 when strings are equal
+ * negative or positive when unequal.
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	int i;
+
+	for (i = 0; (s1[i] || s2[i]) && i < n; i++)
+	{
+		if (s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+	}
+	if (i == n)
+		return (0);
+
 	return (s1[i] - s2[i]);
 }

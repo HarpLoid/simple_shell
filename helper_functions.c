@@ -32,10 +32,9 @@ char *_strchr(char *s, char c)
  * Return: pointer to the location of
  * the duplicate string, NULL on failure.
  */
-char *_strdup(char *str)
+char *_strdup(const char *str)
 {
 	int i;
-	int l = 0;
 	char *s;
 
 	if (str == NULL) /*Validates str in the function*/
@@ -43,20 +42,11 @@ char *_strdup(char *str)
 		return (NULL);
 	}
 
-	for (i = 0; str[i] ; i++) /*Checks the number of elements in str*/
-	{
-		l++;
-	}
-	l++;
-
-	s = malloc(l * sizeof(char));
-
+	s = malloc(_strlen(str) * sizeof(char));
 	if (s == NULL)
-	{
 		return (NULL);
-	}
 
-	for (i = 0; i < l; i++)
+	for (i = 0; str[i] ; i++)
 	{
 		s[i] = str[i];
 	}
