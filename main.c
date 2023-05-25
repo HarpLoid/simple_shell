@@ -18,11 +18,9 @@ int main(__attribute__((unused)) int ac, char *av[])
 	{
 		/*if (isatty(STDIN_FILENO))
 		{}*/
-		if (prompt(&line, &n) == 1)
+		if (prompt(&line, &n, &tokens) == 1)
 			return (1);
 		
-		tokens = tokenize(line, " ,.\t");
-
 		if (execute(tokens) == 1)
 		{
 			perror(av[0]);

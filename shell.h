@@ -26,7 +26,7 @@ ssize_t read_line(char **line, size_t *n, FILE *stream);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
 char **tokenize(char *buffer, const char *delim);
 int isdelim(char c, const char *delim);
-int prompt(char **line, size_t *n);
+int prompt(char **line, size_t *n, char ***tokens);
 int execute(char **buffer);
 void free_tokens(char **tokens);
 list_t *add_node_end(list_t **head, const char *str);
