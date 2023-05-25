@@ -26,7 +26,7 @@ ssize_t read_line(char **line, size_t *n, FILE *stream)
 		if (chars_read == *n)
 		{
 			*n *= 2;
-			newline = realloc(*line, *n);
+			newline = _realloc(*line, chars_read, *n);
 			if (newline == NULL)
 			{
 				free(*line);

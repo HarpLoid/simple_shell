@@ -23,7 +23,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 		
 		tokens = tokenize(line, " ,.\t");
 
-		if (execute(tokens, environ) == 1)
+		if (execute(tokens) == 1)
 		{
 			perror(av[0]);
 			return(1);

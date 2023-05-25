@@ -93,42 +93,35 @@ int _atoi(char *s)
  *
  * Return: pointer to new memory block.
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void *new_ptr;
-	unsigned int i;
+	size_t i = 0;
+	char *p, *np;
 
-	if (ptr == NULL)
-	{
-		new_ptr = malloc(new_size);
-		if (new_ptr == NULL)
-		{
-			return (NULL);
-		}
-		free(ptr);
-		return (new_ptr);
-	}
-	if (old_size == new_size)
-	{
-		return (ptr);
-	}
-	if (new_size == 0 && ptr != NULL)
+	if (new_size == 0)
 	{
 		free(ptr);
+		return(NULL);
+	}
+	
+	new_ptr = malloc(new_size);
+	if (new_ptr == NULL)
 		return (NULL);
-	}
-	if (new_size > old_size)
+
+	
+	if (ptr != NULL)
 	{
-		new_ptr = malloc(new_size);
-		if (new_ptr == NULL)
+		p = (char *) ptr;
+		np = (char *) new_ptr;
+		while (i < old_size)
 		{
-			return (NULL);
-		}
-		for (i = 0; i < old_size; i++)
-		{
-			*((char *)new_ptr + i) = *((char *)ptr + i);
+			np[i] = p[i];
+			i++;
 		}
 		free(ptr);
 	}
+
 	return (new_ptr);
 }
+

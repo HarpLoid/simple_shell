@@ -7,7 +7,7 @@
  *
  * Return: 0 on success, 1 on error
  */
-int execute(char **buffer, char **environ)
+int execute(char **buffer)
 {
 	int child_pid;
 	
