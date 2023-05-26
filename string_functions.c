@@ -35,29 +35,17 @@ char *_strcpy(char *dest, char *src)
 char *_strncpy(char *dest, char *src, int n)
 {
 	int i;
-	int len_src = _strlen(src);
 
-	if (n >= len_src)
+	for (i = 0; i < n && src[i] != '\0'; i++)
 	{
-		for (i = 0; i < len_src; i++)
-		{
-			dest[i] = src[i];
-		}
-
-		while (i < n)
-		{
-			dest[i] = '\0';
-			i++;
-		}
-	}
-	else
-	{
-		for (i = 0; i < n; i++)
-		{
-			dest[i] = src[i];
-		}
+		dest[i] = src[i];
 	}
 
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
 	return (dest);
 }
 

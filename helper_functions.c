@@ -1,6 +1,29 @@
 #include "shell.h"
 
 /**
+ * _strcat - concatenates two strings
+ * @dest: destination of concatenated string.
+ * @src: string to concatenate with destination string.
+ *
+ * Return: concatenated string.
+ */
+char *_strcat(char *dest, char *src)
+{
+	int len_dest, len_src, i;
+	
+	len_dest = _strlen(dest);
+	len_src = _strlen(src);
+	
+	for (i = 0; i < len_src; i++)
+	{
+		dest[len_dest + i] = src[i];
+	}
+	dest[len_dest + i] = '\0';
+
+	return (dest);
+}
+
+/**
  * _strchr - finds a character in
  * a string.
  * @s: string to search.
@@ -107,8 +130,9 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size)
 	
 	new_ptr = malloc(new_size);
 	if (new_ptr == NULL)
+	{
 		return (NULL);
-
+	}
 	
 	if (ptr != NULL)
 	{

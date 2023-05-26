@@ -26,8 +26,8 @@ int main(__attribute__((unused)) int ac, char *av[])
 			perror(av[0]);
 			return(1);
 		}
-
 		free_tokens(tokens);
+		print("after executing");
 	}
 	
 

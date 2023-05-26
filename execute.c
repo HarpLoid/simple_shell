@@ -9,27 +9,42 @@
  */
 int execute(char **buffer)
 {
-	int child_pid;
-	
-	child_pid = fork();
-	if (child_pid == -1)
-	{
-		perror("Error with forking");
-		return (1);
-	}
+	pid_t pid;
+	int status, found;
 
-	if (child_pid == 0)
+	if (access(buffer[0], F_OK) != 0)
 	{
-		if (execve(buffer[0], buffer, environ) == -1)
+		found = _which(buffer);
+		/*find full path*/
+		if (found == 1)
 		{
+			free_tokens(buffer);
 			return (1);
 		}
-		return (0);
-	}
-	else
-	{
-		wait(NULL);
 	}
 
+	if (access(buffer[0], X_OK) == 0)
+	{
+		print("is executable");
+		pid = fork();
+		if (pid == -1)
+		{
+			perror("Error with forking");
+			return (1);
+		}
+
+		if (pid == 0)
+		{
+			print("executing");
+			if (execve(buffer[0], buffer, environ) == -1)
+			{
+				free_tokens(buffer);
+				return (-1);
+			}
+		}
+	}
+	wait(&status);
+	free_tokens(buffer);
+	
 	return (0);
 }

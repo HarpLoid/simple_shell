@@ -9,11 +9,17 @@
  */
 void free_tokens(char **buffer)
 {
-	int i;
-
-	for (i = 0; buffer[i]; i++)
+	int i, size = 0;
+	print("in function");
+	for (i = 0; buffer[i]; i++, size++)
+		;
+	if (size >= 1)
 	{
-		free(buffer[i]);
+		for (i = 0; buffer[i] != NULL; i++)
+		{
+			printf("freeing %s[%d]\n", buffer[i], i);
+			free(buffer[i]);
+		}
 	}
 	free(buffer);
 }

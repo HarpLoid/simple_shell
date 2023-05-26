@@ -34,16 +34,15 @@ char **tokenize(char *buffer, const char *delim)
 				result = realloc(result, (result_size + 1) * sizeof(char*));
 				if (result == NULL)
 				{
-					free(result);
 					return (NULL);
 				}
 				result[result_size] = malloc((len + 1) * sizeof(char));
 				if (result[result_size] == NULL)
 				{
-					free(result[result_size]);
+					free(result);
 					return(NULL);
 				}
-				
+
 				_strncpy(result[result_size], buffer + start, len);
 				result[result_size][len] = '\0';
 				result_size++;

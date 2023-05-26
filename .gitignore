@@ -4,3 +4,4 @@ hsh
 
 debug*.c
 concp
+*.c.swp
