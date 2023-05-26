@@ -1,44 +1,34 @@
 #include "shell.h"
-
 /**
- * main - entry point
- * @ac: arg count
- * @av: arg vector
+ * main - main program for the shell
+ * @ac: 
+ * @av:
+ * @env:
  *
- * Return: 0 on success, 1 on error
+ * Return: Always 0
  */
-int main(int ac, char **av)
-{
-	info_t info[] = { INFO_INIT };
-	int fd = 2;
-
-	asm ("mov %1, %0\n\t"
-		"add $3, %0"
-		: "=r" (fd)
-		: "r" (fd));
-
-	if (ac == 2)
+int main(__attribute__((unused)) int ac, char *av[])
+{	
+	char *line = NULL;
+	size_t n = 0;
+	char **tokens;
+	
+	while (1)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
+		/*if (isatty(STDIN_FILENO))
+		{}*/
+		if (prompt(&line, &n, &tokens) == 1)
+			return (1);
+		
+		if (execute(tokens) == 1)
 		{
-			if (errno == EACCES)
-				exit(126);
-			if (errno == ENOENT)
-			{
-				_eputs(av[0]);
-				_eputs(": 0: Can't open ");
-				_eputs(av[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
-				exit(127);
-			}
-			return (EXIT_FAILURE);
+			perror(av[0]);
+			return(1);
 		}
-		info->readfd = fd;
+
+		free_tokens(tokens);
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, av);
-	return (EXIT_SUCCESS);
+	
+
+	return (0);
 }
